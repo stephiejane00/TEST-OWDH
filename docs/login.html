@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In | Our Wedding Day Hub</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .forgot-password-btn {
+      background: none;
+      border: none;
+      color: #8d7369;
+      text-decoration: underline;
+      cursor: pointer;
+      font: inherit;
+      padding: 0;
+    }
+
+    .forgot-password-btn:hover {
+      opacity: 0.8;
+    }
+
+    .reset-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(34, 26, 22, 0.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 3000;
+    }
+
+    .reset-modal.open {
+      display: flex;
+    }
+
+    .reset-modal-card {
+      width: 100%;
+      max-width: 520px;
+      background: #fffaf8;
+      border: 1px solid #eadfd6;
+      border-radius: 28px;
+      box-shadow: 0 24px 60px rgba(62, 44, 34, 0.16);
+      padding: 26px 24px 22px;
+      position: relative;
+    }
+
+    .reset-modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: none;
+      background: #f2e5de;
+      color: #4d3a32;
+      cursor: pointer;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    .reset-modal-title {
+      margin: 0 0 10px;
+      font-size: 1.65rem;
+      color: #3b2d25;
+      text-align: center;
+    }
+
+    .reset-modal-copy {
+      margin: 0 0 18px;
+      color: #8c7f75;
+      font-size: 0.97rem;
+      line-height: 1.75;
+      text-align: center;
+    }
+
+    .reset-modal label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #3b2d25;
+    }
+
+    .reset-modal input {
+      width: 100%;
+      border: 1px solid #eadfd6;
+      border-radius: 16px;
+      background: #fffdfb;
+      padding: 14px 16px;
+      font-size: 0.96rem;
+      color: #2d221c;
+      box-sizing: border-box;
+      margin-bottom: 14px;
+    }
+
+    .reset-modal input:focus {
+      outline: none;
+      border-color: #d9c2b2;
+      box-shadow: 0 0 0 3px rgba(217, 194, 178, 0.18);
+      background: #ffffff;
+    }
+
+    .reset-help-note {
+      margin: 12px 0 0;
+      color: #8c7f75;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-auth">
+    <a href="signup.html" id="joinLink" class="auth-link auth-pill">Join</a>
+    <a href="login.html" id="loginLink" class="auth-link">Log In</a>
+    <button id="logoutLink" class="auth-button" style="display:none;">Log Out</button>
+  </div>
+
+  <header class="hero">
+    <img src="images/1.png" alt="Our Wedding Day Hub" class="header-image">
+  </header>
+
+  <main class="page-shell">
+    <section class="auth-layout single-card">
+      <section class="auth-card spiced">
+        <span class="auth-kicker">Welcome back</span>
+        <h1>Log In</h1>
+        <p class="auth-mini-text">
+          Sign in to manage your wedding hub account.
+        </p>
+
+        <form id="loginForm" class="pretty-form">
+          <label for="email">Email:</label>
+          <input type="email" id="email" required>
+
+          <label for="password">Password:</label>
+          <input type="password" id="password" required>
+
+          <button type="submit" class="pretty-button wide-glow">Log In</button>
+        </form>
+
+        <p id="message" class="form-message"></p>
+
+        <div style="margin-top:14px; text-align:center;">
+          <button type="button" id="forgotPasswordBtn" class="forgot-password-btn">
+            Forgot your password?
+          </button>
+        </div>
+
+        <p class="auth-footer-text">
+          Don’t have an account yet? <a href="signup.html">Create one here</a>
+        </p>
+      </section>
+    </section>
+  </main>
+
+  <div id="resetModal" class="reset-modal" aria-hidden="true">
+    <div class="reset-modal-card">
+      <button type="button" id="closeResetModal" class="reset-modal-close" aria-label="Close">×</button>
+
+      <h2 class="reset-modal-title">Reset your password</h2>
+      <p class="reset-modal-copy">
+        Enter your email address below and we’ll send you a link to reset your password.
+      </p>
+
+      <label for="resetEmail">Email address</label>
+      <input type="email" id="resetEmail" placeholder="you@example.com">
+
+      <button type="button" id="sendResetBtn" class="pretty-button wide-glow">
+        Send Reset Email
+      </button>
+
+      <p id="resetMessage" class="form-message" style="margin-top:12px;"></p>
+      <p class="reset-help-note">
+        If it does not appear straight away, please allow a little extra time for delivery and have a quick look in your junk or spam folder as well.
+      </p>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p class="footer-eyebrow">wedding vendor directory</p>
+      <h2 class="footer-title">Everything you need for your wedding, all in one place.</h2>
+      <p class="footer-text">
+        Browse trusted wedding businesses, discover local favourites, and connect with the people who can bring your day to life.
+      </p>
+
+      <div class="footer-links">
+        <a href="about.html">About Us</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="refund-policy.html">Refund Policy</a>
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="contact.html">Enquiries</a>
+      </div>
+
+      <p class="footer-abn">ABN: 76688637041</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import {
+      auth,
+      db,
+      signInWithEmailAndPassword,
+      signOut,
+      doc,
+      getDoc
+    } from './firebase.js';
+
+    import {
+      sendPasswordResetEmail
+    } from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js';
+
+    const loginForm = document.getElementById('loginForm');
+    const message = document.getElementById('message');
+
+    const forgotPasswordBtn = document.getElementById('forgotPasswordBtn');
+    const resetModal = document.getElementById('resetModal');
+    const closeResetModal = document.getElementById('closeResetModal');
+    const resetEmail = document.getElementById('resetEmail');
+    const sendResetBtn = document.getElementById('sendResetBtn');
+    const resetMessage = document.getElementById('resetMessage');
+
+    function getDashboardUrl(role) {
+      if (role === 'couple') {
+        return 'https://ourweddingdayhub.com/couple-dashboard.html';
+      }
+      return 'https://ourweddingdayhub.com/dashboard.html';
+    }
+
+    function openResetModal() {
+      resetModal.classList.add('open');
+      resetModal.setAttribute('aria-hidden', 'false');
+      resetMessage.textContent = '';
+      resetEmail.value = document.getElementById('email').value.trim();
+    }
+
+    function closeReset() {
+      resetModal.classList.remove('open');
+      resetModal.setAttribute('aria-hidden', 'true');
+    }
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      message.textContent = '';
+
+      const email = document.getElementById('email').value.trim().toLowerCase();
+      const password = document.getElementById('password').value;
+
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        await user.reload();
+
+        if (!user.emailVerified) {
+          await signOut(auth);
+          message.textContent = 'Please verify your email before logging in.';
+          return;
+        }
+
+        const userRef = doc(db, 'users', user.uid);
+        const userSnap = await getDoc(userRef);
+
+        if (!userSnap.exists()) {
+          await signOut(auth);
+          message.textContent = 'We could not find your account details in the database.';
+          return;
+        }
+
+        const userData = userSnap.data();
+        const redirectUrl = getDashboardUrl(userData.role);
+
+        message.textContent = 'Login successful! Redirecting...';
+
+        setTimeout(() => {
+          window.location.href = redirectUrl;
+        }, 800);
+
+      } catch (error) {
+        console.error(error);
+        message.textContent = 'Login failed: ' + error.message;
+      }
+    });
+
+    forgotPasswordBtn.addEventListener('click', openResetModal);
+    closeResetModal.addEventListener('click', closeReset);
+
+    resetModal.addEventListener('click', (e) => {
+      if (e.target === resetModal) closeReset();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeReset();
+    });
+
+    sendResetBtn.addEventListener('click', async () => {
+      const emailValue = resetEmail.value.trim().toLowerCase();
+
+      resetMessage.textContent = '';
+
+      if (!emailValue) {
+        resetMessage.textContent = 'Please enter your email address.';
+        return;
+      }
+
+      try {
+        await sendPasswordResetEmail(auth, emailValue, {
+          url: 'https://ourweddingdayhub.com/login.html',
+          handleCodeInApp: false
+        });
+
+        resetMessage.textContent = 'Your password reset email has been sent. Once you have updated your password, you can return here and sign in again.';
+      } catch (error) {
+        console.error(error);
+        resetMessage.textContent = 'Could not send reset email: ' + error.message;
+      }
+    });
+  </script>
+
+  <script type="module" src="nav.js"></script>
+</body>
+</html>
