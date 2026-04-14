@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pricing | Our Wedding Day Hub</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .pricing-page {
+      max-width: 1180px;
+      margin: 0 auto 60px;
+      padding: 0 20px;
+    }
+
+    .pricing-intro-wrap {
+      max-width: 860px;
+      margin: 0 auto 34px;
+      text-align: center;
+    }
+
+    .pricing-intro-wrap .page-subtitle {
+      margin-bottom: 14px;
+    }
+
+    .pricing-note-soft {
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .setup-fee-wrap {
+      margin: 10px auto 38px;
+      text-align: center;
+    }
+
+    .setup-fee-eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .setup-fee-box {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 6px 0 0;
+      background: transparent;
+      box-shadow: none;
+      border: none;
+    }
+
+    .setup-fee-box h2 {
+      margin-bottom: 10px;
+    }
+
+    .setup-fee-price {
+      font-family: "Prata", serif;
+      font-size: 2.5rem;
+      line-height: 1;
+      margin-bottom: 14px;
+      color: var(--text);
+    }
+
+    .setup-fee-box p {
+      margin: 0 auto;
+      max-width: 500px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 0.98rem;
+    }
+
+    .setup-fee-box p + p {
+      margin-top: 12px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+      align-items: stretch;
+      margin-top: 8px;
+    }
+
+    .pricing-card {
+      position: relative;
+      background: #fff;
+      border-radius: 24px;
+      padding: 28px 22px 24px;
+      text-align: center;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .pricing-card h2 {
+      font-size: 1.35rem;
+      margin-bottom: 10px;
+    }
+
+    .pricing-price {
+      font-family: "Prata", serif;
+      font-size: 2.15rem;
+      line-height: 1;
+      margin: 10px 0 14px;
+      color: var(--text);
+    }
+
+    .pricing-price small {
+      font-family: "Manrope", sans-serif;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .pricing-subtext {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      margin: 0 0 18px;
+    }
+
+    .pricing-includes {
+      margin-top: auto;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      text-align: left;
+    }
+
+    .pricing-includes p {
+      margin: 0 0 12px;
+      color: var(--text);
+      line-height: 1.72;
+      font-size: 0.94rem;
+    }
+
+    .pricing-includes p:last-child {
+      margin-bottom: 0;
+    }
+
+    .pricing-best-for {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      color: var(--muted) !important;
+    }
+
+    .pricing-classic {
+      background: linear-gradient(180deg, #ffffff 0%, #fffaf7 100%);
+    }
+
+    .pricing-signature {
+      background: linear-gradient(180deg, #ffffff 0%, #fff8f3 100%);
+      box-shadow: 0 14px 30px rgba(199, 157, 137, 0.08);
+    }
+
+    .pricing-elite {
+      background: linear-gradient(180deg, #fffdfc 0%, #fff5ef 100%);
+      box-shadow: 0 16px 34px rgba(199, 157, 137, 0.11);
+      border-color: #ead7cb;
+    }
+
+    .pricing-platinum {
+      background: linear-gradient(180deg, #fffdfc 0%, #fff1e8 100%);
+      box-shadow: 0 18px 38px rgba(199, 157, 137, 0.16);
+      border-color: #e3c7b6;
+      transform: translateY(-6px);
+    }
+
+    .pricing-platinum:hover {
+      transform: translateY(-10px);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #111;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 980px) {
+      .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .pricing-platinum {
+        transform: none;
+      }
+
+      .pricing-platinum:hover {
+        transform: translateY(-4px);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .setup-fee-price {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page-auth">
+    <a href="index.html" class="auth-link">Home</a>
+    <a href="signup.html" id="joinLink" class="auth-link auth-pill">Join</a>
+    <a href="login.html" id="loginLink" class="auth-link">Log In</a>
+    <a href="dashboard.html" id="dashboardLink" class="auth-link" style="display:none;">Dashboard</a>
+    <button id="logoutLink" class="auth-button" style="display:none;">Log Out</button>
+  </div>
+
+  <header class="hero">
+    <img src="images/1.png" alt="Our Wedding Day Hub" class="header-image">
+  </header>
+
+  <main class="pricing-page">
+
+    <section class="card hero-card">
+      <div class="pricing-intro-wrap">
+        <p class="page-subtitle">
+          Choose the listing level that feels right for your business and the way you would like to appear on the platform.
+        </p>
+        <p class="pricing-note-soft">
+          Each tier gives your business a stronger presence, with higher levels designed to make your profile more noticeable and help you stand out more clearly to couples who are actively searching.
+        </p>
+        <p class="pricing-note-soft">
+          You can select your tier during sign up and upgrade at any time as your business grows.
+        </p>
+      </div>
+    </section>
+
+    <section class="setup-fee-wrap">
+      <p class="setup-fee-eyebrow">one off</p>
+      <div class="setup-fee-box">
+        <h2>Setup Fee</h2>
+        <div class="setup-fee-price">$50</div>
+        <p>
+          A one-time onboarding fee to create and activate your account, set up your profile space, and get your business ready to be shown on the platform.
+        </p>
+        <p>
+          With our 60 day satisfaction guarantee, your first two months of subscription can be refunded if you choose not to continue.
+        </p>
+      </div>
+    </section>
+
+    <section class="pricing-grid">
+
+      <article class="pricing-card pricing-classic">
+        <h2>Classic Listing</h2>
+        <div class="pricing-price">$4.75 <small>/ month</small></div>
+        <p class="pricing-subtext">
+          A simple starting point for vendors wanting a polished and affordable presence.
+        </p>
+
+        <div class="pricing-includes">
+          <p><strong>Your own public profile page</strong> with your business name, bio, contact details, and core business information so couples can view your business in one dedicated place.</p>
+          <p><strong>Shown in your chosen categories and locations</strong> so your business can be discovered when couples are browsing the platform for services in their area.</p>
+          <p><strong>A clear and professional way to be visible online</strong> without needing the higher levels of profile presence.</p>
+          <p class="pricing-best-for"><strong>Best for:</strong> vendors who want a simple and affordable way to be seen.</p>
+        </div>
+      </article>
+
+      <article class="pricing-card pricing-signature">
+        <h2>Signature Spotlight</h2>
+        <div class="pricing-price">$5.95 <small>/ month</small></div>
+        <p class="pricing-subtext">
+          For vendors who want a little more presence and a stronger first impression.
+        </p>
+
+        <div class="pricing-includes">
+          <p><strong>Everything in Classic Listing</strong>, with a stronger profile presence that gives your business a little more impact when couples are browsing their options.</p>
+          <p><strong>More room to showcase your business</strong> so couples can get a better feel for what you offer and what makes your brand special.</p>
+          <p><strong>A more established overall presentation</strong> for vendors who want their profile to feel more noticeable than an entry-level listing.</p>
+          <p class="pricing-best-for"><strong>Best for:</strong> vendors who want to stand out a little more while keeping things affordable.</p>
+        </div>
+      </article>
+
+      <article class="pricing-card pricing-elite">
+        <h2>Elite Feature</h2>
+        <div class="pricing-price">$7.25 <small>/ month</small></div>
+        <p class="pricing-subtext">
+          A stronger showcase for vendors ready to grow their visibility on the platform.
+        </p>
+
+        <div class="pricing-includes">
+          <p><strong>Everything in Signature Spotlight</strong>, with a more elevated profile presence that helps your business feel fuller, stronger, and more refined.</p>
+          <p><strong>More opportunity to capture attention</strong> when couples are comparing vendors and deciding who feels like the right fit for their wedding.</p>
+          <p><strong>A more noticeable place on the platform</strong> for businesses wanting their profile to work harder for them and create a stronger impression.</p>
+          <p class="pricing-best-for"><strong>Best for:</strong> vendors who want greater visibility and a more elevated business presence.</p>
+        </div>
+      </article>
+
+      <article class="pricing-card pricing-platinum">
+        <div class="popular-badge">MOST POPULAR</div>
+        <h2>Platinum Prestige</h2>
+        <div class="pricing-price">$9.95 <small>/ month</small></div>
+        <p class="pricing-subtext">
+          Our most premium listing for vendors wanting the strongest and most complete presentation.
+        </p>
+
+        <div class="pricing-includes">
+          <p><strong>Everything in Elite Feature</strong>, with the highest level of profile presence available on the platform.</p>
+          <p><strong>The most polished and premium impression</strong> for couples viewing your business, helping your profile feel especially full, refined, and memorable.</p>
+          <p><strong>The strongest opportunity to stand out clearly</strong> for vendors who want to give couples the clearest and most confident picture of what they offer.</p>
+          <p class="pricing-best-for"><strong>Best for:</strong> vendors who want their business to have the highest level of presence on the platform.</p>
+        </div>
+      </article>
+
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p class="footer-eyebrow">wedding vendor directory</p>
+      <h2 class="footer-title">Everything you need for your wedding, all in one place.</h2>
+      <p class="footer-text">
+        Browse trusted wedding businesses, discover local favourites, and connect with the people who can bring your day to life.
+      </p>
+
+      <div class="footer-links">
+        <a href="about.html">About Us</a>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="refund-policy.html">Refund Policy</a>
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="contact.html">Enquiries</a>
+      </div>
+  <footer class="site-footer">
+    <p>© 2026 Our Wedding Day Hub</p>
+    <p>ABN 76 688 637 041 • Australia</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { auth, onAuthStateChanged, signOut } from "./firebase.js";
+
+    const joinLink = document.getElementById("joinLink");
+    const loginLink = document.getElementById("loginLink");
+    const dashboardLink = document.getElementById("dashboardLink");
+    const logoutLink = document.getElementById("logoutLink");
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        joinLink.style.display = "none";
+        loginLink.style.display = "none";
+        dashboardLink.style.display = "inline-block";
+        logoutLink.style.display = "inline-block";
+      } else {
+        joinLink.style.display = "inline-flex";
+        loginLink.style.display = "inline-block";
+        dashboardLink.style.display = "none";
+        logoutLink.style.display = "none";
+      }
+    });
+
+    logoutLink.addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        window.location.href = "index.html";
+      } catch (error) {
+        console.error("Logout failed:", error);
+      }
+    });
+  </script>
+
+</body>
+</html>
