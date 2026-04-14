@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join | Our Wedding Day Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="page-auth">
+    <a href="signup.html" id="joinLink" class="auth-link auth-pill">Join</a>
+    <a href="login.html" id="loginLink" class="auth-link">Log In</a>
+    <button id="logoutLink" class="auth-button" style="display:none;">Log Out</button>
+  </div>
+
+  <header class="hero">
+    <img src="images/1.png" alt="Our Wedding Day Hub" class="header-image">
+  </header>
+
+  <main class="page-shell">
+    <section class="card hero-card">
+      <p class="eyebrow">join the hub</p>
+      <h1 class="page-title">Create Your Account</h1>
+      <p class="page-subtitle">
+        Welcome to Our Wedding Day Hub, a beautiful space where couples can explore inspiration and trusted vendors,
+        and where vendors can create their own profile and grow their presence online.
+      </p>
+    </section>
+
+    <section class="auth-layout">
+      <section class="auth-intro">
+        <div class="auth-points">
+          <div class="auth-point">
+            <strong>For vendors</strong><br>
+            Create your account and set up your full profile inside your dashboard.
+          </div>
+
+          <div class="auth-point">
+            <strong>For couples</strong><br>
+            Sign up free to save favourite vendors and start building your inspiration space.
+          </div>
+
+          <div class="auth-point">
+            <strong>Simple setup</strong><br>
+            Get started in just a few steps with a soft, easy-to-use experience designed especially for weddings.
+          </div>
+
+          <div class="auth-point">
+            <strong>Finish later</strong><br>
+            Add your categories, locations and details inside your dashboard after joining.
+          </div>
+        </div>
+      </section>
+
+      <section class="auth-card spiced">
+        <h2>Join</h2>
+        <p class="auth-mini-text">Choose your account type below to get started.</p>
+
+        <div class="auth-point" style="margin-bottom: 18px;">
+          <strong>Vendors</strong><br>
+          View pricing and plan options before continuing to payment and account setup.
+        </div>
+
+        <a href="pricing.html" id="pricingLinkBox" class="pretty-button wide-glow" style="display:block; text-align:center; margin-bottom:16px;">
+          View Vendor Pricing
+        </a>
+
+        <form id="signupForm" class="pretty-form">
+          <label for="type">I am a:</label>
+          <select id="type" required>
+            <option value="">Select</option>
+            <option value="vendor">Vendor</option>
+            <option value="couple">Couple</option>
+          </select>
+
+          <p id="vendorNotice" class="auth-switch-note">
+            Couples can join free. Vendors complete a secure checkout before finalising their account setup.
+            Subscriptions can be cancelled at any time, with up to 60 days of fees refundable.
+            The one-time setup fee is non-refundable.
+          </p>
+
+          <div id="vendorPlanBox" style="display:none; margin: 18px 0 22px;">
+            <div class="auth-point" style="margin-bottom: 14px;">
+              <strong>Vendor Launch Experience</strong><br>
+              $50 one-time setup fee, charged together with your selected monthly plan at checkout.
+            </div>
+
+            <div class="auth-point" style="margin-bottom: 10px;">
+              <strong>Choose your monthly plan</strong>
+            </div>
+
+            <div style="display:grid; gap:10px;">
+              <button type="button" class="pretty-button wide-glow" onclick="startVendorCheckout('classic')">
+                Classic Listing · $4.75/month
+              </button>
+              <button type="button" class="pretty-button wide-glow" onclick="startVendorCheckout('signature')">
+                Signature Spotlight · $5.95/month
+              </button>
+              <button type="button" class="pretty-button wide-glow" onclick="startVendorCheckout('elite')">
+                Elite Feature · $7.25/month
+              </button>
+              <button type="button" class="pretty-button wide-glow" onclick="startVendorCheckout('platinum')">
+                Platinum Prestige · $9.95/month
+              </button>
+            </div>
+          </div>
+
+          <label for="name">Name / Business Name:</label>
+          <input type="text" id="name" required>
+
+          <div class="field-row">
+            <div>
+              <label for="email">Email:</label>
+              <input type="email" id="email" required>
+            </div>
+            <div>
+              <label for="password">Password:</label>
+              <input type="password" id="password" minlength="6" required>
+            </div>
+          </div>
+
+          <div id="vendorFields" class="field-soft" style="display:none;">
+            <p id="vendorSetupNote" class="small-text" style="margin-bottom: 14px;">
+              Once payment is completed, you’ll return here to finish creating your vendor account.
+            </p>
+          </div>
+
+          <button type="submit" class="pretty-button wide-glow">Create Account</button>
+        </form>
+
+        <p id="message" class="form-message"></p>
+
+        <p class="auth-footer-text">
+          Already have an account? <a href="login.html">Log in here</a>
+        </p>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p class="footer-eyebrow">wedding vendor directory</p>
+      <h2 class="footer-title">Everything you need for your wedding, all in one place.</h2>
+      <p class="footer-text">
+        Browse trusted wedding businesses, discover local favourites, and connect with the people who can bring your day to life.
+      </p>
+
+      <div class="footer-links">
+        <a href="about.html">About Us</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="refund-policy.html">Refund Policy</a>
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="contact.html">Enquiries</a>
+      </div>
+
+      <p class="footer-abn">ABN: 76688637041</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import {
+      auth,
+      db,
+      createUserWithEmailAndPassword,
+      sendEmailVerification,
+      doc,
+      setDoc,
+      serverTimestamp
+    } from './firebase.js';
+
+    const signupForm = document.getElementById('signupForm');
+    const message = document.getElementById('message');
+    const typeSelect = document.getElementById('type');
+    const vendorFields = document.getElementById('vendorFields');
+    const vendorPlanBox = document.getElementById('vendorPlanBox');
+    const vendorNotice = document.getElementById('vendorNotice');
+    const vendorSetupNote = document.getElementById('vendorSetupNote');
+    const pricingLinkBox = document.getElementById('pricingLinkBox');
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const inviteCode = urlParams.get('invite');
+    const isPaid = urlParams.get('paid') === 'true';
+
+    const complimentaryInviteCode = 'foundingvendor2026';
+    const vendorHasAccess = isPaid || inviteCode === complimentaryInviteCode;
+
+    function updateVendorUI() {
+      const isVendor = typeSelect.value === 'vendor';
+
+      vendorFields.style.display = isVendor ? 'block' : 'none';
+      vendorPlanBox.style.display = isVendor && !vendorHasAccess ? 'block' : 'none';
+
+      if (vendorNotice) vendorNotice.style.display = isVendor && !vendorHasAccess ? 'block' : 'none';
+      if (pricingLinkBox) pricingLinkBox.style.display = isVendor && !vendorHasAccess ? 'block' : 'none';
+
+      if (vendorSetupNote) {
+        vendorSetupNote.textContent = vendorHasAccess
+          ? 'Complete your profile inside your dashboard after signup.'
+          : 'Once payment is completed, you’ll return here to finish creating your account.';
+      }
+    }
+
+    typeSelect.addEventListener('change', updateVendorUI);
+    updateVendorUI();
+
+    signupForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      message.textContent = '';
+
+      const type = typeSelect.value;
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim().toLowerCase();
+      const password = document.getElementById('password').value;
+
+      if (!type) {
+        message.textContent = 'Please select Vendor or Couple.';
+        return;
+      }
+
+      if (type === 'vendor' && !vendorHasAccess) {
+        message.textContent = 'Please choose your vendor plan above first.';
+        return;
+      }
+
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        await sendEmailVerification(user);
+
+        await setDoc(doc(db, 'users', user.uid), {
+          uid: user.uid,
+          email,
+          name,
+          role: type,
+          favorites: [],
+          createdAt: serverTimestamp()
+        });
+
+        if (type === 'vendor') {
+          await setDoc(doc(db, 'vendors', user.uid), {
+            uid: user.uid,
+            businessName: name,
+            email,
+            categories: [],
+            countries: [],
+            states: [],
+            regions: [],
+            profileVisible: false,
+            accountStatus: 'active',
+            createdAt: serverTimestamp()
+          });
+        }
+
+        message.textContent = 'Account created! Please verify your email.';
+        setTimeout(() => window.location.href = 'login.html', 2000);
+
+      } catch (error) {
+        message.textContent = error.message;
+      }
+    });
+  </script>
+
+  <script type="module" src="nav.js"></script>
+</body>
+</html>
